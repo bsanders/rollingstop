@@ -1,6 +1,7 @@
 package main
 
 import (
+    "log"
     "encoding/json"
     "fmt"
     "net/http"
@@ -26,6 +27,13 @@ func RollDie(w http.ResponseWriter, r *http.Request) {
         DieNumber: dieNumber,
         Date: time.Now(),
     }
-    
+
+    log.Printf(
+        "roll=%d\tdie=d%d\t%s",
+        result.Result,
+        result.DieNumber,
+        result.Date,
+    )
+
     json.NewEncoder(w).Encode(result)
 }
